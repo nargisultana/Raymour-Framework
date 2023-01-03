@@ -5,33 +5,35 @@ import org.testng.annotations.Test;
 import baseUtil.BaseClass;
 
 public class HomePageTest extends BaseClass {
-	
-	@Test(enabled=false)
+
+	@Test(enabled = true)
 	public void clickLogoElementTest() {
 		homePage.clickLogoElement();
 	}
-	@Test(enabled=false)
+
+	@Test(enabled = true)
 	public void clicksearchElementTest() {
 		homePage.clicksearchElement();
 	}
-	@Test(enabled=true)
-	public void clickAccountElementTest() {
-		homePage.clickAccount();
+
+	@Test(enabled = false)
+	public void clickGiftsElementTest() {
+		homePage.clickGiftsElement();
 	}
 
-/*	@Test
-	public void clickshopnowtest() {
-		homePage.testShopNowElement();
-
+	@Test(enabled = false)
+	public void clickLivingRoomTest() {
+		homePage.clickLivingRoom();
 	}
 
-	@Test
-	public void clickCreditCardTest() {
-		homePage.clickCreditCard();
-
+	@Test(enabled = false)
+	public void clickmattressElementTest() {
+		homePage.clickMattress();
 	}
-	@Test
-	public void clickLoyaltyElementTest() {
-		homePage.clickLoyaltyElement();
-	}*/
+
+	@Test(enabled = true)
+	public void clickSearchElementTest() {
+		homePage.searchKey();
+	}
+
 }
