@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.Burlington</groupId>
-	<artifactId>com.Burlington</artifactId>
+	<groupId>com.Raymour</groupId>
+	<artifactId>com.Raymour</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>this is farmework</name>
-	<description>This framework is from Burlington project to run the features of the apps</description>
+	<description>This framework is from Raymour project to run the features of the apps</description>
 <dependencies>
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>

@@ -17,7 +17,7 @@ public class BaseClass {
 	@BeforeMethod
 	public void setUp() {
 
-		System.setProperty("webdriver.chrome.driver", "/Users/nyc/eclipse-workspace/com.Burlington/driver/chromedriver");
+		System.setProperty("webdriver.chrome.driver", "/Users/nyc/eclipse-workspace/com.amfam/Driver/chromedriver");
 		driver = new ChromeDriver();
 		driver.manage().window().fullscreen();
 		driver.manage().deleteAllCookies();

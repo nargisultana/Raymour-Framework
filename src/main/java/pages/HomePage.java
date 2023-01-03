@@ -12,44 +12,48 @@ public class HomePage {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	@FindBy (css = "img.Image__Img.lazyautosizes.ls-is-cached.lazyloaded")
+
+	@FindBy(css = "img.Image__Img.lazyautosizes.ls-is-cached.lazyloaded")
 	WebElement logoElement;
-	
+
 	public void clickLogoElement() {
 		logoElement.click();
-		
+
 	}
-	@FindBy(xpath = "//input[@id='global-header-search']")
+
+	@FindBy(xpath = "//input[@id='global-header-search']") 
 	WebElement searchElement;
-	
+
 	public void clicksearchElement() {
 		searchElement.click();
 	}
-	@FindBy(xpath = "(//span[contains(text(), 'Account')])[2]")
-	WebElement accountElement;
-	public void clickAccount() {
-		accountElement.click();
-	}
-	/*@FindBy(xpath = "//a[@class='emailSignUpBtn']")
-	WebElement shopnow;
-	
-	public void testShopNowElement() {
-		shopnow.click();
+
+	@FindBy(xpath = "(//div[contains(text(),'Living R')])[1]") 
+	WebElement livingroom;
+
+	public void clickLivingRoom() {
+		livingroom.click();
 	}
 
-	@FindBy(xpath = "//img[@class='credit-icon']")
-	WebElement creditcard;
-	
-	public void clickCreditCard() {
-		creditcard.click();
+	@FindBy(xpath = "(//div[contains(text(), 'Mattre')])[1]") 
+	WebElement mattressElement;
+
+	public void clickMattress() {
+		mattressElement.click();
 	}
-	@FindBy(xpath = "//img[@class='burl-heart']")
-	WebElement loyaltyElement;
-	
-	public void clickLoyaltyElement() {
-		loyaltyElement.click();
+
+	@FindBy(xpath = "(//div[ (text())='Gifts'])[1]")
+	WebElement giftsElement;
+
+	public void clickGiftsElement() {
+		giftsElement.click();
 	}
-	
-	*/
+
+	@FindBy(className = "react-autosuggest__input")
+	WebElement searchElement2;
+
+	public void searchKey() {
+		searchElement2.sendKeys("mattress");
+	}
 
 }
