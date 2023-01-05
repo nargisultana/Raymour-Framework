@@ -11,15 +11,19 @@ import pages.HomePage;
 
 public class BaseClass {
 
-	WebDriver driver;
+	public WebDriver driver;
 	public HomePage homePage;
 
 	@BeforeMethod
 	public void setUp() {
 
-		System.setProperty("webdriver.chrome.driver", "/Users/nyc/eclipse-workspace/com.amfam/Driver/chromedriver");
+		//System.setProperty("webdriver.chrome.driver", "/Users/nyc/eclipse-workspace/com.amfam/Driver/chromedriver");
+		//driver.manage().window().fullscreen();
+		 System.setProperty("webdriver.chrome.driver",
+		 System.getProperty("user.dir")+"/driver/chromedriver");
+		
 		driver = new ChromeDriver();
-		driver.manage().window().fullscreen();
+		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.get("https://www.raymourflanigan.com/");
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
