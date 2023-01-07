@@ -1,6 +1,9 @@
 package testPages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import org.testng.annotations.Test;
@@ -41,7 +44,7 @@ public class HomePageTest extends BaseClass {
 
 	// Third HomeWork
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void role_use_of_cssSelector_as_locator_searchbox_by_class1() {
 		driver.findElement(By.cssSelector("input.react-autosuggest__input")).click();
 	}
@@ -134,5 +137,34 @@ public class HomePageTest extends BaseClass {
 		driver.findElement(By.className("react-autosuggest__input")).clear();
 		Thread.sleep(4000);
 	}
-
+	//homework -4
+	
+	@Test(enabled = false)
+	public void use_of_sendkeys_method_then_click_by_enter_key_or_button_and_then_clear() throws InterruptedException{
+		Thread.sleep(5000);
+		driver.get("https://www.raymourflanigan.com/");
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		driver.findElement(By.className("react-autosuggest__input")).sendKeys("mattress", Keys.ENTER);
+		Thread.sleep(5000);
+		driver.findElement(By.className("react-autosuggest__input")).clear();
+		Thread.sleep(4000);
+		driver.findElement(By.className("react-autosuggest__input")).sendKeys("sofa", Keys.RETURN);
+		Thread.sleep(5000);	
+	}
+	
+	@Test(enabled = false)
+	public void use_of_navigate_method () throws InterruptedException{
+		Thread.sleep(5000);
+		driver.navigate().to("https://www.jcpenney.com/");
+		Thread.sleep(5000);
+		driver.navigate().back();
+		Thread.sleep(5000);
+		driver.navigate().forward();
+		Thread.sleep(5000);
+		driver.navigate().refresh();
+		Thread.sleep(5000);
+	}
+	
+	
 }
