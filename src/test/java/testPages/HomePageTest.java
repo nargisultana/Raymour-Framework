@@ -2,15 +2,25 @@ package testPages;
 
 import java.time.Duration;
 
+import javax.annotation.WillClose;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import baseUtil.BaseClass;
 
 public class HomePageTest extends BaseClass {
+
+	Dimension dimension;
+	Actions actions;
+	Select select;
 
 	@Test(enabled = false)
 	public void clickLogoElementTest() {
@@ -44,7 +54,7 @@ public class HomePageTest extends BaseClass {
 
 	// Third HomeWork
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void role_use_of_cssSelector_as_locator_searchbox_by_class1() {
 		driver.findElement(By.cssSelector("input.react-autosuggest__input")).click();
 	}
@@ -137,10 +147,10 @@ public class HomePageTest extends BaseClass {
 		driver.findElement(By.className("react-autosuggest__input")).clear();
 		Thread.sleep(4000);
 	}
-	//homework -4
-	
+	// homework -4
+
 	@Test(enabled = false)
-	public void use_of_sendkeys_method_then_click_by_enter_key_or_button_and_then_clear() throws InterruptedException{
+	public void use_of_sendkeys_method_then_click_by_enter_key_or_button_and_then_clear() throws InterruptedException {
 		Thread.sleep(5000);
 		driver.get("https://www.raymourflanigan.com/");
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
@@ -150,11 +160,11 @@ public class HomePageTest extends BaseClass {
 		driver.findElement(By.className("react-autosuggest__input")).clear();
 		Thread.sleep(4000);
 		driver.findElement(By.className("react-autosuggest__input")).sendKeys("sofa", Keys.RETURN);
-		Thread.sleep(5000);	
+		Thread.sleep(5000);
 	}
-	
+
 	@Test(enabled = false)
-	public void use_of_navigate_method () throws InterruptedException{
+	public void use_of_navigate_method() throws InterruptedException {
 		Thread.sleep(5000);
 		driver.navigate().to("https://www.jcpenney.com/");
 		Thread.sleep(5000);
@@ -165,6 +175,160 @@ public class HomePageTest extends BaseClass {
 		driver.navigate().refresh();
 		Thread.sleep(5000);
 	}
-	
-	
+
+	// homework 5
+
+	// Very important interview question
+	// How can you reset a window size? or they can ask how you can change the
+	// screen size by selenium
+	@Test(enabled = false)
+	public void use_of_set_specific_size_in_a_window() throws InterruptedException {
+		Thread.sleep(3000);
+		// Will get the size of cms window
+		// System.out.println("The size of the maximize screen is: "+
+		// driver.manage().window().getSize());
+		dimension = new Dimension(800, 500);
+		driver.manage().window().setSize(dimension);
+		driver.navigate().to("https://www.cvs.com");
+		Thread.sleep(4000);
+		System.out.println("The size of the set screen is: " + driver.manage().window().getSize());
+		driver.manage().window().maximize();
+		Thread.sleep(5000);
+		System.out.println("The size of the maximize screen is: " + driver.manage().window().getSize());
+		Thread.sleep(5000);
+		driver.manage().window().setSize(dimension); // just to show again the set size
+		Thread.sleep(5000);
+		System.out.println("The size of the set screen is: " + driver.manage().window().getSize());
+		Thread.sleep(5000);
+		driver.manage().window().fullscreen();
+		Thread.sleep(5000);
+		System.out.println("The size of the full screen is: " + driver.manage().window().getSize());
+	}
+
+	@Test(enabled = false)
+	public void role1_use_of_soft_assert_method() throws InterruptedException {
+		boolean elementDisplayed = driver
+				.findElement(By.cssSelector("img.Image__Img.lazyautosizes.ls-is-cached.lazyloaded")).isDisplayed();
+		System.out.println("Is the LOGO Displayed? Ans: " + elementDisplayed);
+		Assert.assertTrue(true, "Application Logo is Displayed..............");
+
+	}
+
+	@Test(enabled = false)
+
+	public void role2_use_of_hard_assert_method() throws InterruptedException { // test will be failed because expected
+																				// true, but found false
+		Thread.sleep(5000);
+		driver.get("https://www.raymourflanigan.com/");
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		boolean elementDisplayed = driver
+				.findElement(By.cssSelector("img.Image__Img.lazyautosizes.ls-is-cached.lazyloaded")).isDisplayed();
+		System.out.println("Is the LOGO Displayed? Ans: " + elementDisplayed);
+		Assert.assertTrue(false, "Application Logo is Displayed..........");
+
+	}
+
+	@Test(enabled = false)
+
+	public void role3_use_of_hard_assert_method() throws InterruptedException { // test will be failed because expected
+																				// false, but found true
+		Thread.sleep(5000);
+		driver.get("https://www.raymourflanigan.com/");
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		boolean elementDisplayed = driver
+				.findElement(By.cssSelector("img.Image__Img.lazyautosizes.ls-is-cached.lazyloaded")).isDisplayed();
+		System.out.println("Is the LOGO Displayed? Ans: " + elementDisplayed);
+		Assert.assertFalse(true, "Application Logo is Displayed..........");
+
+	}
+
+	@Test(enabled = false)
+	public void use_of_getTitle_method_with_assertion01() {
+		String expected = "Raymour &amp; Flanigan - Your Home for Furniture, Mattresses &amp; Decor | Raymour &amp; Flanigan";
+		String actual = driver.getTitle();
+		System.out.println("The Title of the home page is: " + actual);
+
+	}
+
+	@Test(enabled = false)
+	public void use_of_getTitle_method_with_assertion02() {
+		String expected = "Raymour & Flanigan - Your Home for Furniture, Mattresses & Decor | Raymour Flanigan";
+		String actual = driver.getTitle();
+		System.out.println("The Title of the home page is: " + actual);
+		Assert.assertEquals(actual, expected); // hard assertion
+	}
+
+	@Test(enabled = false)
+	public void use_of_getTitle_method_with_assertion03() {
+		String expected = "Raymour & Flanigan - Your Home for Furniture, Mattresses & Decor | Raymour & Flanigan";
+		String actual = driver.getTitle();
+		System.out.println("The Title of the home page is: " + actual);
+		Assert.assertEquals(actual, expected, "Home page title doesn't match.....");
+		String currentURL = driver.getCurrentUrl();
+		System.out.println("The title current URL Is: " + currentURL);
+	}
+
+	// SOFT ASSERT
+	@Test(enabled = false)
+	public void use_of_getTitle_method_with_soft_assertion01() {
+		String expected = "Raymour &amp; Flanigan - Your Home for Furniture, Mattresses &amp; Decor | Raymour &amp; Flanigan ";
+		String actual = driver.getTitle();
+		System.out.println("The Title of the home page is: " + actual);
+		SoftAssert softAssert = new SoftAssert();
+		softAssert.assertEquals(actual, expected, "Home page title doesn't match.....");
+		String currentURL = driver.getCurrentUrl();
+		System.out.println("the current url is: " + currentURL);
+
+	}
+
+	// Mouse Hovar action
+
+	@Test(enabled = false)
+	public void use_of_mouse_hoveraction_on_sale() throws InterruptedException {
+		Thread.sleep(5000);
+		driver.get("https://www.raymourflanigan.com/");
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		actions = new Actions(driver);
+		WebElement sale = driver.findElement(By.xpath("//div[text()='Sale']"));
+		Thread.sleep(5000);
+		actions.moveToElement(sale).build().perform();
+		Thread.sleep(4000);
+
+	}
+	// drop down, all categories
+	// drop down is a commonly asked interview question
+	// Most commonly use method in drop down --> selectByVisibleText()
+
+	@Test(enabled = false)
+	public void useOfDropDown_by_visual_text() throws InterruptedException {
+		Thread.sleep(3000);
+		driver.get("https://www.amazon.com/ref=nav_logo");
+		Thread.sleep(3000);
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebElement dropElement02 = driver.findElement(By.xpath("//select[@id='searchDropdownBox']"));
+		select = new Select(dropElement02);
+		select.selectByVisibleText("Appliances");
+		Thread.sleep(3000);
+	}
+
+	// drop down, all categories
+	// drop down is a commonly asked interview question
+	// use method --> selectByValue()
+	@Test(enabled = true)
+	public void useOfDropDown_by_value() throws InterruptedException {
+		Thread.sleep(3000);
+		driver.get("https://www.amazon.com/ref=nav_logo");
+		Thread.sleep(3000);
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebElement dropElement03 = driver.findElement(By.xpath("//select[@id='searchDropdownBox']"));
+		select = new Select(dropElement03);
+		select.selectByValue("search-alias=mobile-apps");
+		Thread.sleep(3000);
+	}
+
 }
