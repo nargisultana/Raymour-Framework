@@ -55,7 +55,7 @@ public class HomePage {
 	WebElement searchElement2;
 
 	public void searchKey() {
-		searchElement2.sendKeys("mattress");
+		searchElement.sendKeys("mattress");
 	}
 
 	@FindBy(xpath = "(//span[contains(text(), 'Account')])[2]")
@@ -97,6 +97,50 @@ public class HomePage {
 		boolean flag = logo.isDisplayed();
 		System.out.println("The logo is Displayed? Ans: " + flag);
 		return flag;
+	}
+
+	@FindBy(xpath = "//input[@id='global-header-search']")
+	WebElement searchElement3;
+
+	public void inputTextInUserIdAndPasswordFieldThenClickLoginButton() throws InterruptedException {
+		searchElement3.click();
+	}
+
+	/*
+	 * @FindBy(xpath
+	 * ="(//span[contains(@class, 'GlobalHeaderDropdownTrigger__Text')])[4]")
+	 * WebElement account;
+	 * 
+	 * public void clickAccountButton()throws InterruptedException {
+	 * clickElement(account); }
+	 */
+	@FindBy(xpath = "(//input[@class='FormField__Input FormField__Reset'])[1]")
+	WebElement emailElement;
+
+	private void inputEmail() {
+		inputText(emailElement, "nargis4567@yahoo.com");
+	}
+
+	@FindBy(xpath = "//input[@name='password']")
+	WebElement passElement;
+
+	private void inputPassword() {
+		inputText(passElement, "ml777");
+	}
+
+	@FindBy(xpath = "//button[@id='accountsignin']")
+	WebElement signElement;
+
+	private void clickSignIn() {
+		clickElement(signElement);
+	}
+
+	public void signInAccountWithPositiveCredentials() throws InterruptedException {
+		accountButton();
+		clickSignInButton();
+		inputEmail();
+		inputPassword();
+		clickSignIn();
 	}
 
 }
