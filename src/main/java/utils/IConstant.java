@@ -4,8 +4,8 @@ public interface IConstant {
 	// the variable inside interface are final and static in nature.
 	String URL = "url";
 	String PAGELOAD_WAIT = "pageload_wait";
-	String IMPLICITY_WAIT = "implicity_wait";
-	String EXPLICITY_WAIT = "explicity_wait";
+	String IMPLICITLY_WAIT = "implicitly_wait";
+	String EXPLICITLY_WAIT = "explicitly_wait";
 	String BROWSER = "browser";
 
 	String CHROME = "chrome";

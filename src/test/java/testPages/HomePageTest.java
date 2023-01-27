@@ -1,15 +1,18 @@
 package testPages;
 
-import java.time.Duration;
+import static common.CommonActions.*;
 
-import javax.annotation.WillClose;
+import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -318,7 +321,7 @@ public class HomePageTest extends BaseClass {
 	// drop down, all categories
 	// drop down is a commonly asked interview question
 	// use method --> selectByValue()
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void useOfDropDown_by_value() throws InterruptedException {
 		Thread.sleep(3000);
 		driver.get("https://www.amazon.com/ref=nav_logo");
@@ -329,6 +332,119 @@ public class HomePageTest extends BaseClass {
 		select = new Select(dropElement03);
 		select.selectByValue("search-alias=mobile-apps");
 		Thread.sleep(3000);
+	}
+
+	// homework -6
+
+	@Test(enabled = false)
+	public void loggerPositiveTest() throws InterruptedException {
+		homePage.signInAccountWithPositiveCredentials();
+	}
+
+	@Test(enabled = false)
+	public void use_of_sendKeys_method_then_click_submit() throws InterruptedException {
+		Thread.sleep(5000);
+		// directing to Amazon.com but this you will never see in industry
+		// I did it just for emergency
+		driver.get("https://www.ebay.com/");
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		// Writing text in search field
+		driver.findElement(By.xpath("//input[@id='gh-ac']")).sendKeys("Laptop");
+		Thread.sleep(5000);
+		// click on submit button
+	}
+
+	@Test(enabled = false)
+	public void use_of_sendKeys_method_by_javascriptExecutor_then_click_submit() throws InterruptedException {
+		Thread.sleep(5000);
+		// directing to Amazon.com but this you will never see in industry
+		// I did it just for emergency
+		driver.get("https://www.ebay.com/");
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		// Writing text in search field
+		driver.findElement(By.xpath("//input[@id='gh-ac']"));
+		Thread.sleep(5000);
+		WebElement searchField = driver.findElement(By.xpath("//input[@id='gh-ac']"));
+		WebElement searchButton = driver.findElement(By.id("gh-btn"));
+		// Writing text in search field by JavascriptExecutor
+		js.executeScript("arguments[0].value= 'Pant'", searchField);
+		Thread.sleep(5000);
+		// click on the search button
+		js.executeScript("arguments[0].click()", searchButton);
+		Thread.sleep(5000);
+		// click on submit button
+	}
+
+	// it will fail
+	@Test(enabled = false)
+	public void how_to_handle_hidden_element_by_regular_selenium_method() throws InterruptedException {
+		Thread.sleep(5000);
+		driver.get("https://courses.letskodeit.com/practice");
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		// identify the 'Hide' element and click on it
+		// The search field will be disappeared, but we can pass value on it
+		driver.findElement(By.id("hide-textbox")).click();
+		// identify element and set value by JavaScriptExecutor
+		driver.findElement(By.xpath("//input[@id='displayed-text']")).sendKeys("Nargis Sultana");
+		// js.executeScript("arguments[0].value='Nargis Sultana' ", field);
+	}
+
+	@Test(enabled = false)
+	public void how_to_handle_hidden_element_by_javascriptExecutor() throws InterruptedException {
+		Thread.sleep(5000);
+		driver.get("https://courses.letskodeit.com/practice");
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		// identify the 'Hide' element and click on it
+		// The search field will be disappeared, but we can pass value on it
+		driver.findElement(By.id("hide-textbox")).click();
+		// identify element and set value by JavascriptExecutor
+		WebElement field = driver.findElement(By.xpath("//input[@id='displayed-text']"));
+		js.executeScript("arguments[0].value='Nargis Sultana' ", field);
+		Thread.sleep(5000);
+
+	}
+
+	@Test(enabled = false)
+	public void use_of_explicitly_wait_in_raymour() throws InterruptedException {
+		Thread.sleep(5000);
+		driver.get("https://www.raymourflanigan.com/");
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("react-autosuggest__input"))).click();
+		driver.findElement(By.className("react-autosuggest__input")).sendKeys("sofa", Keys.RETURN);
+		Thread.sleep(5000);
+	}
+
+	@Test(enabled = false)
+	public void use_of_explicitly_wait_in_raymour2() throws InterruptedException {
+		Thread.sleep(5000);
+		driver.get("https://www.raymourflanigan.com/");
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+		wait.until(ExpectedConditions.elementToBeClickable(By.className("react-autosuggest__input"))).click();
+		driver.findElement(By.className("react-autosuggest__input")).sendKeys("sofa", Keys.RETURN);
+		Thread.sleep(5000);
+	}
+
+	@Test(enabled = false)
+	public void use_of_scroll_down_and_scroll_up_by_actions_class1() throws InterruptedException {
+
+		actions.keyDown(Keys.CONTROL).sendKeys(Keys.END).perform();
+		Thread.sleep(5000);
+		actions.keyDown(Keys.CONTROL).sendKeys(Keys.HOME).perform();
+		Thread.sleep(5000);
+	}
+
+	@Test(enabled = true)
+	public void use_of_scroll_down_and_scroll_up_by_javascriptExecutor() throws InterruptedException {
+		js.executeScript("window.scrollBy(0, 2500)", "");
+		Thread.sleep(4000);
+		js.executeScript("window.scrollBy(0, -1500)", "");
+		Thread.sleep(4000);
 	}
 
 }
